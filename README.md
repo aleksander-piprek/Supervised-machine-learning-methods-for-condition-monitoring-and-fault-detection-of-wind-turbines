@@ -1,2 +1,2 @@
-# Supervised-Machine-Learning-for-Wind-Turbine-Anomaly-Detection
-This is my code repository for my Engineering Thesis regarding Machine Learning.
+# Supervised machine learning methods for condition monitoring and fault detection of wind turbines
+This is my code repository for my Engineering Thesis. The goal of the thesis was to use three Supervised Machine Learning algorithms, being Support-vector machine, k-Nearest neighbors and Gaussian process regression to detect faults and predict abnormalities in behaviour of a wind turbine. Data was acquired from a wind farm based in La Haute-Borne, France.
