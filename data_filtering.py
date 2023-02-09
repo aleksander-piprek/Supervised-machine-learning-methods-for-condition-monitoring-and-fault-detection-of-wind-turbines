@@ -11,6 +11,7 @@ df = pd.read_csv("Dataset/la-haute-borne-data-2013-2016.csv", sep=';')
 # pawel_df = pd.read_csv("Scripts/data.csv")
 #%% Deleting corrupted data  
 df = df[df.Wind_turbine_name == 'R80721']
+pre_df = df
 needed = df.filter(like='avg').columns
 df = df[needed]   
 del df["Va1_avg"] 
@@ -60,10 +61,10 @@ print(df)
 #%% Power curve plot
 def power():
     plt.figure(dpi=1200)
-    plt.title("R80721 Wind Turbine Power curve")
+    # plt.title("R80721 Wind Turbine Power Curve")
     plt.xlabel("Wind speed [m/s]")
     plt.ylabel("Power [kW]")   
-    # plt.scatter(x = pre_df['Ws_avg'], y = pre_df['P_avg'], s=0.1, alpha=0.6, color='r', label='Before cleaning')
+    plt.scatter(x = pre_df['Ws_avg'], y = pre_df['P_avg'], s=0.1, alpha=0.6, color='r', label='Before cleaning')
     plt.scatter(x = df['Ws_avg'], y = df['P_avg'], s=0.11, color='b', label='After cleaning')
     plt.legend(loc="best")
     
@@ -81,24 +82,28 @@ power()
 #%% Gearbox bearing temperature plot
 def gbt():
     plt.figure(dpi=1200)
-    plt.title("Gearbox bearing temperature")
     plt.xlabel("Samples")
-    plt.ylabel("Temperature")
+    plt.ylabel("Temperature [°C]")
     plt.plot(df.index, df['Gb1t_avg'], color='b')
 gbt()
 #%% Generator bearing temperature plot
 def dbt():
     plt.figure(dpi=1200)
-    plt.title("Generator bearing temperature")
     plt.xlabel("Samples")
-    plt.ylabel("Temperature")
+    plt.ylabel("Temperature [°C]")
     plt.plot(df.index, df['Db1t_avg'], color='b')
 dbt()
-#%% Rotor bearing temperature plot
+#%% Wind speed plot
 def rbt():
     plt.figure(dpi=1200)
-    plt.title("Rotor bearing temperature")
     plt.xlabel("Samples")
-    plt.ylabel("Temperature")
-    plt.plot(df.index, df['Rbt_avg'], color='b')
+    plt.ylabel("Wind speed [m/s]")
+    plt.plot(df.index, df['Ws_avg'], color='b')
+rbt()
+#%% Active power plot
+def rbt():
+    plt.figure(dpi=1200)
+    plt.xlabel("Samples")
+    plt.ylabel("Active power [kW]")
+    plt.plot(df.index, df['P_avg'], color='b')
 rbt()
